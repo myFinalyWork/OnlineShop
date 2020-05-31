@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+<body>
+<header>
+    <th:block th:include="~{/fragments/navbar}"></th:block>
+</header>
+<main class="mt-3">
+    <div class="jumbotron bg-light">
+        <th:block th:object="${model}">
+
+            <th:block th:if="*{imageUrl} == null">
+                <div class="text-center">
+                    <a th:href="@{/users/edit-profile}">
+                        <img src="https://res.cloudinary.com/martoraneca/image/upload/v1563972870/36-2-512_ws0xga.png"
+                             height="250" alt="profileImg" class="rounded-circle">
+                    </a>
+                </div>
+            </th:block>
+            <th:block th:if="*{imageUrl} != null">
+                <div class="text-center">
+                    <img th:src="*{imageUrl}" height="300" alt="profileImg" class="rounded-circle">
+                </div>
+            </th:block>
+            <div class="row mt-2">
+                <div class="col col-md-12 text-center">
+                    <h2 th:text="*{username}"></h2>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col col-md-12 text-center">
+                    <h4 th:text="*{email}"></h4>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col col-md-12 text-center">
+                    <h4 style="color: green" th:text="|Your money balance: *{balance} $|"></h4>
+                </div>
+            </div>
+            <div class="row mt-3 text-center">
+                <form class="form w-25 mx-auto" th:action="@{/users/add-money}" th:method="post">
+                    <div class="form-group">
+                        <input id="moneyToAdd" class="form-control text-center" type="number" min="0.01" max="10000" step="0.01"
+                               value="1" name="moneyToAdd"/>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add money to your balance!</button>
+                </form>
+            </div>
+            <hr class="hr-2 bg-dark">
+            <div class="button-holder d-flex justify-content-center">
+                <a th:href="@{/users/edit-profile}" class="btn btn-dark">Edit Profile</a>
+            </div>
+        </th:block>
+    </div>
+</main>
+<footer>
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

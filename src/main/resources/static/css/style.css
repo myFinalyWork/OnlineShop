@@ -125,7 +125,7 @@ hr {
     background: transparent;
     border: none;
     font-weight: bold;
-    color: rgba(0, 0, 0, 1) !important;
+    color: rgb(253, 251, 255) !important;
 }
 
 .logout-button:hover {

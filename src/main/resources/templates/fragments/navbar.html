@@ -8,14 +8,16 @@
                 <div class="noneNavBar">
 
                     <ul class="ul-nav-bar">
-                        <li>
-                            <a th:href="@{/users/login}">Login</a>
-                        </li>
                         <li >
-                            <a th:href="@{/users/register}">Register</a>
+                            <a th:href="@{/users/register}">РЕГИСТРАЦИЯ</a>
                         </li>
+                        <li>
+                            <a th:href="@{/users/login}">ВОЙТИ</a>
+                        </li>
+
                         <li style="float: left">
-                            <a class="nav-logo" th:href="@{/}">𝗢𝗻𝗹𝗶𝗻𝗲 𝗦𝘁𝗼𝗿𝗲</a>
+                            <a class="nav-logo" th:href="@{/}">ПРОМТОВАРЫ-ОНЛАЙН
+                            #лучшедома</a>
                         </li>
                     </ul>
                 </div>
@@ -24,36 +26,44 @@
     </th:block>
 
     <th:block sec:authorize="isAuthenticated()">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light rounded font-weight-bold">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
 
-                <a class="navbar-brand" th:href="@{/users/home}">𝐇𝐨𝐦𝐞 𝐏𝐚𝐠𝐞</a>
-                <th:block th:if="${#session.getAttribute('profilePicture') == null}">
-                    <a class="navbar-brand" th:href="@{/users/profile}">
-                        <img src="https://res.cloudinary.com/martoraneca/image/upload/v1563972870/36-2-512_ws0xga.png" width="40" style="border-radius: 50%" />
-                    </a>
-                </th:block>
-                <th:block th:if="${#session.getAttribute('profilePicture') != null}">
-                    <a class="navbar-brand" th:href="@{/users/profile}">
-                        <img th:src="${#session.getAttribute('profilePicture')}" width="40" style="border-radius: 50%" />
-                    </a>
-                </th:block>
-                <a class="navbar-brand" style="color: green" sec:authentication="name"></a>
-                <a class="navbar-brand" style="color: green" th:text="|(${#session.getAttribute('customer-balance')} $)|">
-                </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#userNavBar"
-                    aria-controls="userNavBar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <a class="navbar-brand" th:href="@{/users/home}">ПРОМТОВАРЫ-ОНЛАЙН
+                <img src="https://cdn0.iconfinder.com/data/icons/e-commerce-basic-icons-set-3/800/product8-128.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                #лучшедома
+            </a>
+
 
             <div class="collapse navbar-collapse d-flex justify-content-end" id="userNavBar">
                 <ul class="navbar-nav">
+
+
+                    <th:block th:if="${#session.getAttribute('profilePicture') == null}">
+                        <a class="navbar-brand" th:href="@{/users/profile}">
+                            <img src="https://res.cloudinary.com/martoraneca/image/upload/v1563972870/36-2-512_ws0xga.png" width="40" style="border-radius: 50%" />
+                        </a>
+                    </th:block>
+                    <th:block th:if="${#session.getAttribute('profilePicture') != null}">
+                        <a class="navbar-brand" th:href="@{/users/profile}">
+                            <img th:src="${#session.getAttribute('profilePicture')}" width="40" style="border-radius: 50%" />
+                        </a>
+                    </th:block>
+                    <a class="navbar-brand" style="color: green" sec:authentication="name"></a>
+                    <a class="navbar-brand" style="color: green" th:text="|(${#session.getAttribute('customer-balance')} $)|">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#userNavBar"
+                            aria-controls="userNavBar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+
 
                     <th:block sec:authorize="!hasRole('ROLE_MODERATOR')">
 
                     <div class="dropdown show">
                         <a class="nav-link dropdown-toggle" th:href="@{#}" role="button" id="cartDropdown"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: green">
-                            Shopping Cart
+                            Корзина покупок
                         </a>
                         <div class="dropdown-menu" aria-labelledby="cartDropdown">
                             <th:block th:each="item : ${#session.getAttribute('shopping-cart')}" th:object="${item}">
@@ -61,20 +71,20 @@
                             </th:block>
                             <div class="dropdown-divider"></div>
                             <div class="text-center">
-                                <a class="btn btn-success" th:href="@{/cart/details-cart}" th:method="get">Cart</a>
+                                <a class="btn btn-success" th:href="@{/cart/details-cart}" th:method="get">Корзина</a>
                             </div>
                         </div>
                     </div>
                     <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/wishlist/customer-wishlist}">My Wishlist</a>
+                        <a class="nav-link" th:href="@{/wishlist/customer-wishlist}">Список желаний</a>
                     </li>
 
                     <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/orders/customer-orders}">My Orders</a>
+                        <a class="nav-link" th:href="@{/orders/customer-orders}">Мои заказы</a>
                     </li>
 
                     <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/users/profile}">Profile</a>
+                        <a class="nav-link" th:href="@{/users/profile}">Профиль</a>
                     </li>
 
                     </th:block>
@@ -85,15 +95,15 @@
                                 <a class="nav-link active dropdown-toggle" th:href="@{#}" role="button"
                                    id="moderatorDropdown" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false">
-                                    Moderator
+                                    Менеджер
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="moderatorDropdown">
-                                    <a class="dropdown-item" th:href="@{/categories/add-category}">Add Category</a>
-                                    <a class="dropdown-item" th:href="@{/products/add-product}">Add Product</a>
+                                    <a class="dropdown-item" th:href="@{/categories/add-category}">Добавить категорию</a>
+                                    <a class="dropdown-item" th:href="@{/products/add-product}">Добавить товар</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" th:href="@{/categories/all-categories}">All Categories</a>
-                                    <a class="dropdown-item" th:href="@{/products/all-products}">All Products</a>
-                                    <a class="dropdown-item" th:href="@{/orders/all-orders}">All Orders</a>
+                                    <a class="dropdown-item" th:href="@{/categories/all-categories}">Все категории</a>
+                                    <a class="dropdown-item" th:href="@{/products/all-products}">Все товары</a>
+                                    <a class="dropdown-item" th:href="@{/orders/all-orders}">Все заказы</a>
                                 </div>
                             </div>
                         </li>
@@ -104,11 +114,11 @@
                             <div class="dropdown">
                                 <a class="nav-link active dropdown-toggle" th:href="@{#}" role="button"
                                    id="adminDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Admin
+                                    Администратор
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="adminDropdown">
-                                    <a class="dropdown-item" th:href="@{/users/all-users}">All Users</a>
-                                    <a class="dropdown-item" th:href="@{/orders/all-orders}">All Orders</a>
+                                    <a class="dropdown-item" th:href="@{/users/all-users}">Все пользователи</a>
+                                    <a class="dropdown-item" th:href="@{/orders/all-orders}">Все заказы</a>
                                 </div>
                             </div>
                         </li>
@@ -116,7 +126,7 @@
 
                     <li class="nav-item active">
                         <form action="/logout" th:method="post">
-                            <button class="logout-button nav-link">Logout</button>
+                            <button class="logout-button nav-link">ВЫЙТИ</button>
                         </form>
                     </li>
                 </ul>

@@ -25,6 +25,7 @@
     </th:block>
 
     <th:block sec:authorize="isAuthenticated()">
+        <header>
         <nav>
             <div class="noneNavBar">
                 <ul class="ul-nav-bar">
@@ -60,7 +61,7 @@
                         </li>
 
                         <li style="float: right">
-                            <div class="dropdown show">
+                            <div class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" th:href="@{#}" role="button" id="cartDropdown"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: green">
                                     Корзина
@@ -86,7 +87,7 @@
                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
 
                         <li style="float: right">
-                        <div class="dropdown">
+                        <div class="nav-item dropdown">
                             <a class="nav-link active dropdown-toggle" th:href="@{#}" role="button"
                                id="adminDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Администратор
@@ -102,7 +103,7 @@
                     <th:block sec:authorize="hasRole('ROLE_MODERATOR')">
 
                         <li style="float: right">
-                            <div class="dropdown show">
+                            <div class="nav-item dropdown">
                                 <a class="nav-link active dropdown-toggle" th:href="@{#}" role="button"
                                    id="moderatorDropdown" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false">
@@ -145,5 +146,6 @@
                 </ul>
             </div>
         </nav>
+        </header>
     </th:block>
 </th:block>

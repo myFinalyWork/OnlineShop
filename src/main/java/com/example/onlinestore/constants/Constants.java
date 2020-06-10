@@ -34,7 +34,7 @@ public final class Constants {
     public static final String WISHLIST_NOT_FOUND_EXCEPTION_MESSAGE = "Wishlist with this id does not exist!";
     public static final String ROLE_NOT_FOUND_EXCEPTION_MESSAGE = "Role with this name does not exist!";
     public static final String DUPLICATE_USER_EXCEPTION_MESSAGE = "User with this username already exists!";
-    public static final String DUPLICATE_EMAIL_EXCEPTION_MESSAGE = "User with this email already exists!";
+    public static final String DUPLICATE_EMAIL_EXCEPTION_MESSAGE = "User with this email address already exists!";
     public final static String CANT_FIND_USER_WITH_THIS_ID_EXCEPTION_MESSAGE = "Can't find user with this id!";
     public final static String EMPTY_LIST_NAME = "emptyList";
     public final static String EMPTY_LIST_SINGULAR_MESSAGE = "Your %s is empty!";

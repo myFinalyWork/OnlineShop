@@ -18,9 +18,12 @@ public interface UserService extends UserDetailsService {
 
     void setRole(String id, String role);
 
-    void existsByUsername(String username);
+    boolean existsByUsername(String username);
 
     void existsByEmail(String email);
+
+    boolean existsByEmailAddress(String email);
+
 
     UserServiceModel addMoneyToBalance(UserServiceModel userServiceModel, BigDecimal moneyToAdd);
 

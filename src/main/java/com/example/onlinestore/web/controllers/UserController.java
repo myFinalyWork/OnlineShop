@@ -46,6 +46,7 @@ public class UserController extends BaseController {
     private final ModelMapper modelMapper;
     private final UserEditProfileValidator userEditProfileValidator;
 
+
     @Autowired
     public UserController(UserService userService, CategoryService categoryService, CloudinaryService cloudinaryService, RecaptchaService recaptchaService, ModelMapper modelMapper, UserEditProfileValidator userEditProfileValidator) {
         this.userService = userService;
@@ -55,6 +56,7 @@ public class UserController extends BaseController {
         this.modelMapper = modelMapper;
         this.userEditProfileValidator = userEditProfileValidator;
     }
+
 
     @GetMapping("/register")
     @PreAuthorize(IS_ANONYMOUS)
@@ -70,12 +72,25 @@ public class UserController extends BaseController {
                                         ModelAndView modelAndView,
                                         HttpServletRequest request) {
 
-        this.userService.existsByUsername(model.getUsername());
-        this.userService.existsByEmail(model.getEmail());
+     //  this.userService.existsByUsername(model.getUsername());
+     //  this.userService.existsByEmail(model.getEmail());
+
+        if ( this.userService.existsByUsername(model.getUsername())) {
+            modelAndView.addObject("duplicateUser", DUPLICATE_USER_EXCEPTION_MESSAGE);
+            return view("/users/register", modelAndView);
+        }
+
         if (!model.getPassword().equals(model.getConfirmPassword())) {
             modelAndView.addObject(PASSWORDS_DONT_MATCH_ATTRIBUTE, PASSWORDS_DONT_MATCH_MESSAGE);
             return view("/users/register", modelAndView);
         }
+
+
+        if (this.userService.existsByEmailAddress(model.getEmail())) {
+            modelAndView.addObject("duplicateEmailAddress", DUPLICATE_EMAIL_EXCEPTION_MESSAGE);
+            return view("/users/register", modelAndView);
+        }
+
 
         if (this.recaptchaService.verifyRecaptcha(request.getRemoteAddr(), gRecaptchaResponse) == null) {
             modelAndView.addObject(RECAPTCHA_ERROR_ATTRIBUTE, RECAPTCHA_ERROR_MESSAGE);

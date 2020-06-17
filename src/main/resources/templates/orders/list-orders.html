@@ -34,7 +34,7 @@
                         <td class="col-md-3 text-center" th:text="*{#temporals.format(orderedOn, 'dd-MM-YYYY HH:mm:ss')}"></td>
                         <td class="col-md-2 text-center" style="color: green" th:text="|*{totalPrice} $|"></td>
                         <td class="col-md-2 text-center">
-                            <a th:href="@{/orders/details-order/{id}(id=*{id})}" class="btn btn-info">Товары</a>
+                            <a th:href="@{/orders/details-order/{id}(id=*{id})}" class="btn btn-info">Посмотреть</a>
                         </td>
                     </tr>
 
@@ -57,7 +57,7 @@
                         <td class="col-md-3 text-center" th:text="*{#temporals.format(orderedOn, 'dd-MM-YYYY HH:mm:ss')}"></td>
                         <td class="col-md-2 text-center" style="color: green" th:text="|*{totalPrice} $|"></td>
                         <td class="col-md-2 text-center">
-                            <a th:href="@{/orders/details-order/{id}(id=*{id})}" class="btn btn-info">Товары</a>
+                            <a th:href="@{/orders/details-order/{id}(id=*{id})}" class="btn btn-info">Посмотреть</a>
                         </td>
                     </tr>
                 </th:block>

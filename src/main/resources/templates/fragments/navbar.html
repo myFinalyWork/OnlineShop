@@ -26,126 +26,124 @@
 
     <th:block sec:authorize="isAuthenticated()">
         <header>
-        <nav>
-            <div class="noneNavBar">
-                <ul class="ul-nav-bar">
-
-                    <li style="float: left">
-                        <a class="navbar-brand" th:href="@{/users/home}">ПРОМТОВАРЫ-ОНЛАЙН
-                            <img src="https://cdn0.iconfinder.com/data/icons/e-commerce-basic-icons-set-3/800/product8-128.png"
-                                 width="30" height="30" class="d-inline-block align-top" alt="">
-                            #лучшедома
-                        </a>
-                    </li>
-
-                    <li style="float: right">
-                        <form action="/logout" th:method="post">
-                            <button class="logout-button nav-link">ВЫЙТИ</button>
-                        </form>
-                    </li>
-
-
-
-                    <th:block sec:authorize="!hasRole('ROLE_MODERATOR')">
-
-                        <li style="float: right">
-                            <a class="nav-link" th:href="@{/users/profile}">Профиль</a>
+            <nav>
+                <div class="authenNavBar">
+                    <ul class="ul-nav-bar1">
+                        <li style="float: left">
+                            <a class="navbar-brand" th:href="@{/users/home}">ПРОМТОВАРЫ-ОНЛАЙН
+                                <img src="https://cdn0.iconfinder.com/data/icons/e-commerce-basic-icons-set-3/800/product8-128.png"
+                                     width="30" height="30" class="d-inline-block align-top" alt="">
+                                #лучшедома
+                            </a>
                         </li>
 
                         <li style="float: right">
-                            <a class="nav-link" th:href="@{/orders/customer-orders}">Мои заказы</a>
+                            <form action="/logout" th:method="post">
+                                <button class="logout-button nav-link">ВЫЙТИ</button>
+                            </form>
                         </li>
 
-                        <li style="float: right">
-                            <a class="nav-link" th:href="@{/wishlist/customer-wishlist}">Список желаний</a>
-                        </li>
 
-                        <li style="float: right">
-                            <div class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" th:href="@{#}" role="button" id="cartDropdown"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: green">
-                                    Корзина
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="cartDropdown">
-                                    <th:block th:each="item : ${#session.getAttribute('shopping-cart')}"
-                                              th:object="${item}">
-                                        <div class="dropdown-item" th:text="|*{product.name} x *{quantity}|"></div>
-                                    </th:block>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="text-center">
-                                        <a class="btn btn-success" th:href="@{/cart/details-cart}"
-                                            th:method="get">Корзина</a>
+                        <th:block sec:authorize="!hasRole('ROLE_MODERATOR')">
+
+                            <li style="float: right">
+                                <a class="nav-link" th:href="@{/users/profile}">Профиль</a>
+                            </li>
+
+                            <li style="float: right">
+                                <a class="nav-link" th:href="@{/orders/customer-orders}">Мои заказы</a>
+                            </li>
+
+                            <li style="float: right">
+                                <a class="nav-link" th:href="@{/wishlist/customer-wishlist}">Список желаний</a>
+                            </li>
+
+                            <li style="float: right">
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" th:href="@{#}" role="button" id="cartDropdown"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                       style="color: green">
+                                        Корзина
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="cartDropdown">
+                                        <th:block th:each="item : ${#session.getAttribute('shopping-cart')}"
+                                                  th:object="${item}">
+                                            <div class="dropdown-item" th:text="|*{product.name} x *{quantity}|"></div>
+                                        </th:block>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="text-center">
+                                            <a class="btn btn-success" th:href="@{/cart/details-cart}"
+                                               th:method="get">Корзина</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    </th:block>
+                            </li>
+                        </th:block>
 
 
+                        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
 
-
-                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-
-                        <li style="float: right">
-                        <div class="nav-item dropdown">
-                            <a class="nav-link active dropdown-toggle" th:href="@{#}" role="button"
-                               id="adminDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Администратор
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="adminDropdown">
-                                <a class="dropdown-item" th:href="@{/users/all-users}">Все пользователи</a>
-                                <a class="dropdown-item" th:href="@{/orders/all-orders}">Все заказы</a>
-                            </div>
-                        </div>
-                        </li>
-                    </th:block>
-
-                    <th:block sec:authorize="hasRole('ROLE_MODERATOR')">
-
-                        <li style="float: right">
-                            <div class="nav-item dropdown">
-                                <a class="nav-link active dropdown-toggle" th:href="@{#}" role="button"
-                                   id="moderatorDropdown" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Менеджер
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="moderatorDropdown">
-                                    <a class="dropdown-item" th:href="@{/categories/add-category}">Добавить
-                                        категорию</a>
-                                    <a class="dropdown-item" th:href="@{/products/add-product}">Добавить товар</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" th:href="@{/categories/all-categories}">Все категории</a>
-                                    <a class="dropdown-item" th:href="@{/products/all-products}">Все товары</a>
-                                    <a class="dropdown-item" th:href="@{/orders/all-orders}">Все заказы</a>
+                            <li style="float: right">
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link active dropdown-toggle" th:href="@{#}" role="button"
+                                       id="adminDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                       aria-expanded="false">
+                                        Администратор
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                                        <a class="dropdown-item" th:href="@{/users/all-users}">Все пользователи</a>
+                                        <a class="dropdown-item" th:href="@{/orders/all-orders}">Все заказы</a>
+                                    </div>
                                 </div>
-                            </div>
+                            </li>
+                        </th:block>
+
+                        <th:block sec:authorize="hasRole('ROLE_MODERATOR')">
+
+                            <li style="float: right">
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link active dropdown-toggle" th:href="@{#}" role="button"
+                                       id="moderatorDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                       aria-expanded="false">
+                                        Менеджер
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="moderatorDropdown">
+                                        <a class="dropdown-item" th:href="@{/categories/add-category}">Добавить
+                                            категорию</a>
+                                        <a class="dropdown-item" th:href="@{/products/add-product}">Добавить товар</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" th:href="@{/categories/all-categories}">Все
+                                            категории</a>
+                                        <a class="dropdown-item" th:href="@{/products/all-products}">Все товары</a>
+                                        <a class="dropdown-item" th:href="@{/orders/all-orders}">Все заказы</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </th:block>
+
+
+                        <li style="float: right">
+                            <th:block th:if="${#session.getAttribute('profilePicture') == null}">
+                                <a class="navbar-brand" th:href="@{/users/profile}">
+                                    <img src="https://res.cloudinary.com/martoraneca/image/upload/v1563972870/36-2-512_ws0xga.png"
+                                         width="40" style="border-radius: 50%"/>
+                                </a>
+                            </th:block>
+                            <th:block th:if="${#session.getAttribute('profilePicture') != null}">
+                                <a class="navbar-brand" th:href="@{/users/profile}">
+                                    <img th:src="${#session.getAttribute('profilePicture')}" width="40"
+                                         style="border-radius: 50%"/>
+                                </a>
+                            </th:block>
+                            <h6 class="navbar-brand" style="color: green" sec:authentication="name"></h6>
+                            <h6 class="navbar-brand" style="color: green"
+                                th:text="|(${#session.getAttribute('customer-balance')} $)|">
+                            </h6>
                         </li>
-                    </th:block>
-
-
-                    <li style="float: right">
-                        <th:block th:if="${#session.getAttribute('profilePicture') == null}">
-                            <h6 class="navbar-brand" th:href="@{/users/profile}">
-                                <img src="https://res.cloudinary.com/martoraneca/image/upload/v1563972870/36-2-512_ws0xga.png"
-                                     width="40" style="border-radius: 50%"/>
-                            </h6>
-                        </th:block>
-                        <th:block th:if="${#session.getAttribute('profilePicture') != null}">
-                            <h6 class="navbar-brand" th:href="@{/users/profile}">
-                                <img th:src="${#session.getAttribute('profilePicture')}" width="40"
-                                     style="border-radius: 50%"/>
-                            </h6>
-                        </th:block>
-                        <h6 class="navbar-brand" style="color: green" sec:authentication="name"></h6>
-                        <h6 class="navbar-brand" style="color: green"
-                            th:text="|(${#session.getAttribute('customer-balance')} $)|">
-                        </h6>
-                    </li>
-
-
-                </ul>
-            </div>
-        </nav>
+                    </ul>
+                </div>
+            </nav>
+            <hr class="hr-2 bg-dark">
         </header>
     </th:block>
 </th:block>

@@ -21,7 +21,7 @@ public final class Constants {
     public static final String SUCCESS_STRING = "success";
 
     public final static String WISHLIST_CONST = "wishlist";
-    public final static String SHOPPING_CART_CONST = "shopping-cart";
+    public final static String SHOPPING_CART_CONST = "корзина";
     public final static String ORDERS_CONST = "orders";
     public final static String ID_CONST = "id";
     public final static String NAME_CONST = "name";
@@ -37,7 +37,7 @@ public final class Constants {
     public static final String DUPLICATE_EMAIL_EXCEPTION_MESSAGE = "User with this email address already exists!";
     public final static String CANT_FIND_USER_WITH_THIS_ID_EXCEPTION_MESSAGE = "Can't find user with this id!";
     public final static String EMPTY_LIST_NAME = "emptyList";
-    public final static String EMPTY_LIST_SINGULAR_MESSAGE = "Your %s is empty!";
+    public final static String EMPTY_LIST_SINGULAR_MESSAGE = "Ваша %s пустая!";
     public final static String EMPTY_LIST_PLURAL_MESSAGE = "Your %s are empty!";
     public final static String EMPTY_MODERATOR_ORDERS_MESSAGE = "There are currently no orders!";
 

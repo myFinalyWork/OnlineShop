@@ -9,28 +9,39 @@
     <th:block th:include="~{/fragments/navbar}"></th:block>
 </header>
 <main class="mt-3">
-    <h1 class="text-center text-dark">Register</h1>
+    <h1 class="text-center text-dark">Регистрация</h1>
     <hr class="hr-2 bg-dark w-25">
     <form class="form w-25 mx-auto" th:action="@{/users/register}" th:method="post" th:object="${model}">
         <div class="form-group">
-            <label for="username" class="font-weight-bold">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Username..." name="username"  minlength="4" required>
+            <label for="username" class="font-weight-bold">Логин</label>
+            <input type="text" class="form-control" id="username" placeholder="Логин..." name="username"  minlength="4" required>
+        </div>
+
+        <th:block th:if="${duplicateUser != null}">
+            <small style="color: red" th:text="${duplicateUser}"></small>
+        </th:block>
+
+        <div class="form-group">
+            <label for="password" class="font-weight-bold">Пароль</label>
+            <input type="password" class="form-control" id="password" placeholder="Пароль..." name="password"  minlength="6" required>
         </div>
         <div class="form-group">
-            <label for="password" class="font-weight-bold">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password..." name="password"  minlength="6" required>
-        </div>
-        <div class="form-group">
-            <label for="confirmPassword" class="font-weight-bold">Confirm Password</label>
-            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password..." name="confirmPassword" minlength="4" required>
+            <label for="confirmPassword" class="font-weight-bold">Подтвердите пароль</label>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Подтвердите пароль..." name="confirmPassword" minlength="4" required>
         </div>
         <th:block th:if="${passDontMatch != null}">
             <small style="color: red" th:text="${passDontMatch}"></small>
         </th:block>
+
         <div class="form-group">
-            <label for="email" class="font-weight-bold">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Email..." name="email" minlength="4" required>
+            <label for="email" class="font-weight-bold">Почтовый адрес</label>
+            <input type="email" class="form-control" id="email" placeholder="Почта..." name="email" minlength="4" required>
         </div>
+
+        <th:block th:if="${duplicateEmailAddress != null}">
+            <small style="color: red" th:text="${duplicateEmailAddress}"></small>
+        </th:block>
+
         <hr class="hr-2 bg-dark">
         <div class="recaptcha-holder d-flex justify-content-center">
             <div class="g-recaptcha" data-sitekey="6LcapLIUAAAAAKrhy_r08Hv6O56OPiUMVFBp3jFy"></div>
@@ -40,7 +51,7 @@
         </div>
         <hr class="hr-2 bg-dark">
         <div class="button-holder d-flex justify-content-center">
-            <button type="submit" class="btn btn-dark">Register</button>
+            <button type="submit" class="btn btn-dark">Зарегистрировать</button>
         </div>
     </form>
 </main>

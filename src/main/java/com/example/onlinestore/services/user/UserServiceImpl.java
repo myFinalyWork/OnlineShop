@@ -139,10 +139,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void existsByUsername(String username) {
+    public boolean existsByUsername(String username) {
+        boolean b = false;
         if (this.userRepository.existsByUsername(username)) {
-            throw new DuplicateUsernameException(DUPLICATE_USER_EXCEPTION_MESSAGE);
+            b = true;
+        //   throw new DuplicateUsernameException(DUPLICATE_USER_EXCEPTION_MESSAGE);
         }
+        return b;
     }
 
     @Override
@@ -150,6 +153,11 @@ public class UserServiceImpl implements UserService {
         if (this.userRepository.existsByEmail(email)) {
             throw new DuplicateEmailException(DUPLICATE_EMAIL_EXCEPTION_MESSAGE);
         }
+    }
+
+    @Override
+    public boolean existsByEmailAddress(String email) {
+        return this.userRepository.existsByEmail(email);
     }
 
     @Override
